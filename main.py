@@ -24,14 +24,16 @@ if __name__ == "__main__":
 
     # 穴開け実行
     for i, dictation in enumerate(dictations):
-        if "." in words[dictation]:
+        if "." == words[dictation][-1]:
             words[dictation] = f"( {i + 1} )."
-        elif "," in words[dictation]:
+        elif "," == words[dictation][-1]:
             words[dictation] = f"( {i + 1} ),"
-        elif "!" in words[dictation]:
+        elif "!" == words[dictation][-1]:
             words[dictation] = f"( {i + 1} )!"
-        elif "?" in words[dictation]:
+        elif "?" == words[dictation][-1]:
             words[dictation] = f"( {i + 1} )?"
+        elif ":" == words[dictation][-1]:
+            words[dictation] = f"( {i + 1} ):"
         else:
             words[dictation] = f"( {i + 1} )"
 
