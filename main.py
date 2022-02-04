@@ -6,12 +6,12 @@ if __name__ == "__main__":
     # 入力用パーサーを生成
     parser = argparse.ArgumentParser()
     parser.add_argument("--filename", "-f", type=str, required=True)
-    parser.add_argument("--dictation_quantity", "-d", default=15, type=int)
+    parser.add_argument("--perforated_quantity", "-p", default=15, type=int)
 
     # ファイル名取得
     args = parser.parse_args()
     filename: str = args.filename
-    dictation_quantity: int = args.dictation_quantity
+    perforated_quantity: int = args.perforated_quantity
 
     # ファイル読み込み
     with open(filename, "r") as f:
@@ -20,22 +20,22 @@ if __name__ == "__main__":
 
     # 穴開き箇所の生成
     indexes: List[int] = list(range(0, len(words)))
-    dictations: List[int] = sorted(random.sample(indexes, dictation_quantity))
+    perforateds: List[int] = sorted(random.sample(indexes, perforated_quantity))
 
     # 穴開け実行
-    for i, dictation in enumerate(dictations):
-        if "." == words[dictation][-1]:
-            words[dictation] = f"( {i + 1} )."
-        elif "," == words[dictation][-1]:
-            words[dictation] = f"( {i + 1} ),"
-        elif "!" == words[dictation][-1]:
-            words[dictation] = f"( {i + 1} )!"
-        elif "?" == words[dictation][-1]:
-            words[dictation] = f"( {i + 1} )?"
-        elif ":" == words[dictation][-1]:
-            words[dictation] = f"( {i + 1} ):"
+    for i, perforated in enumerate(perforateds):
+        if "." == words[perforated][-1]:
+            words[perforated] = f"( {i + 1} )."
+        elif "," == words[perforated][-1]:
+            words[perforated] = f"( {i + 1} ),"
+        elif "!" == words[perforated][-1]:
+            words[perforated] = f"( {i + 1} )!"
+        elif "?" == words[perforated][-1]:
+            words[perforated] = f"( {i + 1} )?"
+        elif ":" == words[perforated][-1]:
+            words[perforated] = f"( {i + 1} ):"
         else:
-            words[dictation] = f"( {i + 1} )"
+            words[perforated] = f"( {i + 1} )"
 
     # 結合
     result: str = " ".join(words)
